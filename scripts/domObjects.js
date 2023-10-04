@@ -1,3 +1,4 @@
+
 const movieCard = (movie) =>{
     let movieCard = document.createElement('div')
     movieCard.classList.add('movieCard')
@@ -6,7 +7,7 @@ const movieCard = (movie) =>{
     mainContent.classList.add('mainContent')
     let movieCover = document.createElement('img')
     movieCover.classList.add('movieCover')
-    movieCover.src = movie.imgPath
+    movieCover.src = 'https://image.tmdb.org/t/p/w185/' + movie.poster_path
     movieCover.alt = ''
 
     let title = document.createElement('div')
@@ -17,14 +18,14 @@ const movieCard = (movie) =>{
     icons.classList.add('icons')
 
     let div1 = document.createElement('div')
-    div1.innerHTML = `<img src='img/Star.svg' alt='Rating'><span>${movie.rating}</span>`
+    div1.innerHTML = `<img src='img/Star.svg' alt='Rating'><span>${movie.vote_average}</span>`
 
     let div2 = document.createElement('div')
     div2.innerHTML= '<img class="bookmark" src="img/Heart.svg" alt=""> <span>Bookmark</span>'
     
     let description = document.createElement('p')
     description.classList.add('description')
-    description.textContent = movie.description
+    description.textContent = movie.overview
     icons.append(div1, div2)
     title.append(h3Title, icons)
     mainContent.append(movieCover, title)
