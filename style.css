@@ -1,0 +1,271 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;500;600&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: #fff;
+    font-family: 'Kumbh Sans', sans-serif;
+}
+
+/*Header*/
+header{
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #17162E;
+
+}
+
+header h1{
+    font-size: 36px;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.search-bar{
+    display: flex;
+   
+}
+
+.search-bar input{
+    
+    padding: 26px 24px;
+    width: 632px;
+    height: 74px;
+    color:#8A8A8A;
+    border: none;
+    border-radius: 8px 0px 0px 8px;
+    background-color: #454558;
+    outline: 0;
+}
+
+.search-bar img{
+    background-color: #454558;
+    padding-right: 30px; 
+    cursor: pointer;
+    border-radius: 0px 8px 8px 0px;
+}
+
+#checkbox-label{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 320px;
+    font-weight: 600;
+}
+
+#checkbox input{
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    
+}
+
+#checkbox h2{
+    font-size: 18px;
+}
+
+/*Movies section*/
+
+.moviesContainer{
+    background-color: #17162E;
+    display: flex;
+    gap: 40px;
+    flex-direction: column;
+    padding: 20px 100px;
+    
+}
+
+.movieCard{
+    padding: 20px 30px;
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #1D1C3B;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.mainContent{
+    display: flex;
+    align-items: center;
+    gap: 40px
+}
+
+.movieCover{
+    width: 150px;
+    height: 150px;
+    object-fit:cover;
+    border-radius: 50%;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.title{
+    display: flex;
+    width: fit-content;
+    flex-direction: column;
+    gap: 20px;
+    align-items: start;
+}
+
+.title h3{
+    width: 268px;
+    font-weight: 500;
+    flex-shrink: 0;
+
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.icons >div{
+    gap: 13px;
+    display: flex;
+    align-items: center;
+    width: 50%;
+    justify-content: left;
+}
+
+.icons img{
+    cursor: pointer;
+    transition: all .3s;
+}
+
+
+.bookmark:hover{
+    background-image: url('img/fillHeart.svg')
+}
+.description{
+   
+    color: #8A8A8A;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 31px;
+}
+
+
+
+footer{
+    text-align: center;
+    height: fit-content;
+    padding: 20px 0px;
+    background-color: #1D1C3B;
+}
+
+footer span{
+    font-weight: bold;
+}
+footer a{
+    text-decoration: none;
+    color: #fff
+}
+
+footer a:hover{
+    color: #D7A82F;
+}
+
+@media (max-width: 1118px) {
+
+    .movieCard{
+        flex-direction: column;
+        gap:20px;
+    }
+
+    .mainContent{
+
+        width: 100%;
+        justify-content: space-evenly;
+        gap: 20px;
+        flex-wrap: wrap ;
+    }
+}
+
+@media (max-width: 720px) {
+
+    .search-bar input{
+        width: 300px;
+    }
+   .moviesContainer{
+        padding: 10px 30px;
+   }
+   .movieCard{
+    padding: 20px;
+   }
+    .movieCover{
+         width: 40%;
+         height: 40%;
+    }
+   
+    .mainContent, .icons{
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+              
+    }
+    .description{
+        
+        line-height: 20px;
+    }
+        
+    
+}
+
+@media (max-width: 350px) {
+    .search-bar input{
+        
+        width: 200px;
+        height: 50px;
+    }
+    #checkbox-label{
+        
+        justify-content: center;
+    }
+    .moviesContainer{
+        padding: 10px 15px;
+   }
+    .icons{
+        flex-wrap: wrap;
+        gap:10px
+    }
+
+    .movieCard{
+        gap: 20px;
+        padding: 15px ;
+    }
+    .title, .description{
+        font-size: 14px;
+    }
+
+    .movieCover{width: 60%; height: auto;}
+    
+    .title{
+        gap: 5px;
+    
+    }
+   
+}
+
+@media  (max-width: 280px){
+    header h1{
+        font-size: 28px;
+    }
+    .title{
+        width: 100%;
+        align-items: center;
+        
+    }
+    .title h3{
+        max-width: 80%;
+
+    }
+}
