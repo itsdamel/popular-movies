@@ -1,9 +1,7 @@
-import { displayPopularMovies, renderMovieList } from "./events.js"
-import { fetching } from "./APICall.js"
+import { displayPopularMovies, displaySearchedMovies } from "./events.js"
+import {getUserInput} from './domObjects.js'
 
-
-
+getUserInput()
 
 
 window.onload = displayPopularMovies()
-//Testing to see if creating card is all good :)

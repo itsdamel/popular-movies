@@ -1,3 +1,4 @@
+import { displaySearchedMovies} from "./events.js"
 
 const movieCard = (movie) =>{
     let movieCard = document.createElement('div')
@@ -35,4 +36,31 @@ const movieCard = (movie) =>{
     
 }
 
-export {movieCard};
+const getUserInput = () =>{
+    return returnInputField.value
+}
+
+const returnInputField = () => {
+    let input = document.querySelector('.userInput') 
+    return input
+}
+
+const returnSearchButton = () => {
+    let searchButton = document.querySelector('#searchIcon')
+    return searchButton;
+}
+
+
+//Adding events
+let input = returnInputField()
+let searchButton = returnSearchButton()
+input.addEventListener('keydown', (e) => {
+    (e.key === 'Enter')&&displaySearchedMovies(input.value)
+});
+
+
+searchButton.addEventListener('click', () => displaySearchedMovies(input.value));
+
+
+
+export {movieCard, getUserInput};
