@@ -1,7 +1,7 @@
-import { displayPopularMovies, displaySearchedMovies } from "./events.js"
-import {getUserInput} from './domObjects.js'
-
-getUserInput()
+import { enableMovieCardEvents } from "./domObjects.js"
+import { displayPopularMovies} from "./events.js"
 
 
+enableMovieCardEvents()
 window.onload = displayPopularMovies()
+

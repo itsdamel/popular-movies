@@ -144,6 +144,11 @@ header h1{
 .bookmark:hover{
     background-image: url('img/fillHeart.svg')
 }
+
+.isBookmarked{
+    background-image: url('img/fillHeart.svg') ;
+}
+
 .description{
    
     color: #8A8A8A;

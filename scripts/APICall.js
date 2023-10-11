@@ -1,4 +1,7 @@
+import { createNewMovie } from "./objects.js";
+import { favorites, isInLocalStorage, moviesInLocalStorage } from "./events.js";
 const apiKey = '60333fe76f8b9de19cc5752f48b60ee0'
+
 
 const searchMovieByName = async(inputValue) =>{
 
@@ -18,15 +21,28 @@ const getPopularMovies = async () =>{
 
 };
 
+let moviesOnScreen = []
+
 const fetching = async (url) => {
     try {
         let response = await fetch(url)
         let responseJson = await response.json()
-        return responseJson.results
+        let objectList = responseJson.results.map((movie)=>{
+            if(isInLocalStorage(movie.id)){
+                return favorites.find((movieInStorage) => movieInStorage.id == movie.id)
+            }else{
+                return createNewMovie(movie)
+            }
+            
+        })
+        console.log(objectList)
+        console.log(favorites)
+        moviesOnScreen = objectList
+        return objectList;
     } catch(err) {
         console.log(err)
     }
    
 };
 
-export{fetching, getPopularMovies, searchMovieByName}
+export{fetching, getPopularMovies, searchMovieByName, moviesOnScreen}

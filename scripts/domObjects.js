@@ -1,4 +1,4 @@
-import { displaySearchedMovies} from "./events.js"
+import { displaySearchedMovies, displayFavoriteMovies, findMovieObjectById, handleFavorite} from "./events.js"
 
 const movieCard = (movie) =>{
     let movieCard = document.createElement('div')
@@ -8,7 +8,7 @@ const movieCard = (movie) =>{
     mainContent.classList.add('mainContent')
     let movieCover = document.createElement('img')
     movieCover.classList.add('movieCover')
-    movieCover.src = 'https://image.tmdb.org/t/p/w185/' + movie.poster_path
+    movieCover.src = 'https://image.tmdb.org/t/p/w185/' + movie.imgPath
     movieCover.alt = ''
 
     let title = document.createElement('div')
@@ -19,14 +19,18 @@ const movieCard = (movie) =>{
     icons.classList.add('icons')
 
     let div1 = document.createElement('div')
-    div1.innerHTML = `<img src='img/Star.svg' alt='Rating'><span>${movie.vote_average}</span>`
+    div1.innerHTML = `<img src='img/Star.svg' alt='Rating'><span>${movie.rating}</span>`
 
     let div2 = document.createElement('div')
-    div2.innerHTML= '<img class="bookmark" src="img/Heart.svg" alt=""> <span>Bookmark</span>'
+    movie.isBookmarked
+    ?div2.innerHTML = `<img class="bookmark isBookmarked" id=${movie.id} src="img/Heart.svg" alt=""> <span>Bookmark</span>`
+    :div2.innerHTML= `<img class="bookmark" id=${movie.id} src="img/Heart.svg" alt=""> <span>Bookmark</span>`
+    
+    
     
     let description = document.createElement('p')
     description.classList.add('description')
-    description.textContent = movie.overview
+    description.textContent = movie.description
     icons.append(div1, div2)
     title.append(h3Title, icons)
     mainContent.append(movieCover, title)
@@ -36,31 +40,48 @@ const movieCard = (movie) =>{
     
 }
 
-const getUserInput = () =>{
-    return returnInputField.value
-}
+const getUserInput = () => returnInputField.value
 
-const returnInputField = () => {
-    let input = document.querySelector('.userInput') 
-    return input
-}
 
-const returnSearchButton = () => {
-    let searchButton = document.querySelector('#searchIcon')
-    return searchButton;
-}
+const returnInputField = () => document.querySelector('.userInput') 
+    
+const returnSearchButton = () =>  document.querySelector('#searchIcon')
+    
+const returnBookmarkNode = () =>  document.querySelectorAll('.bookmark')
+   
+const returnCheckBox = () => document.querySelector('#checkbox')
 
 
 //Adding events
 let input = returnInputField()
 let searchButton = returnSearchButton()
+let checkbox = returnCheckBox()
+
 input.addEventListener('keydown', (e) => {
     (e.key === 'Enter')&&displaySearchedMovies(input.value)
+    checkbox.checked = false;
 });
+
+checkbox.addEventListener('click', (e) =>{
+    e.target.checked&&displayFavoriteMovies()
+    
+})
+
+function enableMovieCardEvents(){
+    returnBookmarkNode().forEach((bookmark) => {
+
+        bookmark.addEventListener('click', (e) =>{
+            let movie = findMovieObjectById(e.target.id)
+            handleFavorite(e, movie)
+        
+            
+        })
+    })
+}
 
 
 searchButton.addEventListener('click', () => displaySearchedMovies(input.value));
 
 
 
-export {movieCard, getUserInput};
+export {movieCard, getUserInput, enableMovieCardEvents, returnBookmarkNode};
