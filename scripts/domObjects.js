@@ -31,6 +31,7 @@ const movieCard = (movie) =>{
     let description = document.createElement('p')
     description.classList.add('description')
     description.textContent = movie.description
+
     icons.append(div1, div2)
     title.append(h3Title, icons)
     mainContent.append(movieCover, title)
@@ -39,6 +40,7 @@ const movieCard = (movie) =>{
     return movieCard
     
 }
+
 
 const getUserInput = () => returnInputField.value
 
@@ -59,6 +61,7 @@ let checkbox = returnCheckBox()
 
 input.addEventListener('keydown', (e) => {
     (e.key === 'Enter')&&displaySearchedMovies(input.value)
+    
     checkbox.checked = false;
 });
 

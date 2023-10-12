@@ -1,5 +1,5 @@
 import { createNewMovie } from "./objects.js";
-import { favorites, isInLocalStorage, moviesInLocalStorage } from "./events.js";
+import { favorites, isInLocalStorage} from "./events.js";
 const apiKey = '60333fe76f8b9de19cc5752f48b60ee0'
 
 
@@ -35,8 +35,7 @@ const fetching = async (url) => {
             }
             
         })
-        console.log(objectList)
-        console.log(favorites)
+
         moviesOnScreen = objectList
         return objectList;
     } catch(err) {

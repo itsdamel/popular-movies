@@ -16,9 +16,8 @@ let favorites =  moviesInLocalStorage()
 
 const renderMovieList =  (movieList) => {
     
-    let movieSection = document.querySelector('.moviesContainer')
-    movieSection.textContent = ''
-
+    cleanMovieSection() //Maybe cleanAndReturn movieSection?
+    let movieSection = returnMovieSection()
     movieList.forEach(movie => movieSection.append((movieCard(movie))
     ))
     
@@ -65,18 +64,40 @@ const handleFavorite = (e, movie) =>{
 
 
 const displayFavoriteMovies = () =>{
-    renderMovieList(moviesInLocalStorage())
-    moviesOnScreen = moviesInLocalStorage()
+    if(favorites.length !== 0){
+        renderMovieList(moviesInLocalStorage())
+        moviesOnScreen = moviesInLocalStorage()
+    }else{
+        cleanMovieSection()
+        let movieSection = returnMovieSection()
+        movieSection.append(erroMessage("Seems like you haven't bookmarked any movie yet!"))
+    }
+    
 }
 
 async function displaySearchedMovies(inputValue){
+    console.log(inputValue)
+    console.log(inputValue.length)
+   if(inputValue.trim() !== ''){
+        let searchResultList = await searchMovieByName(inputValue)
+        renderMovieList(searchResultList)
+   }else{
+        cleanMovieSection()
+        let movieSection = returnMovieSection()
+        movieSection.append(erroMessage("Can't do! please enter a movie title :)"))
+   }
    
-   let searchResultList = await searchMovieByName(inputValue)
-   renderMovieList(searchResultList)
+
    
 }
 
-
+//Error message but is a DOM element
+const erroMessage = (message) =>{
+    const container = document.createElement('div')
+    container.classList.add('error')
+    container.innerHTML = `<h3>OOPS!</h3><p>${message}</p>`;
+    return container
+}
 //Helper
 const findMovieObjectById = (id) => {
     return moviesOnScreen.find((movie) => movie.id == id)
@@ -88,5 +109,14 @@ function isInLocalStorage(movieId){
 }
 
 
+function cleanMovieSection(){
+    let movieSection = returnMovieSection()
+    movieSection.textContent = ''
+}
+
+//return
+function returnMovieSection(){
+    return document.querySelector('.moviesContainer')
+}
 export{renderMovieList, displayPopularMovies, displaySearchedMovies, displayFavoriteMovies, handleFavorite, findMovieObjectById, isInLocalStorage, moviesInLocalStorage, favorites};
 

@@ -8,7 +8,17 @@
     color: #fff;
     font-family: 'Kumbh Sans', sans-serif;
 }
+html {
+    height: 100%;
+}    
 
+body {
+     min-height: 100%;
+     display: flex;
+     flex-direction: column;
+     background-color:#17162E;
+     justify-content: space-between;
+}
 /*Header*/
 header{
     display: flex;
@@ -16,7 +26,6 @@ header{
     height: 300px;
     align-items: center;
     justify-content: space-evenly;
-    background-color: #17162E;
 
 }
 
@@ -72,7 +81,6 @@ header h1{
 /*Movies section*/
 
 .moviesContainer{
-    background-color: #17162E;
     display: flex;
     gap: 40px;
     flex-direction: column;
@@ -157,7 +165,17 @@ header h1{
     line-height: 31px;
 }
 
+/* Error messages */
 
+.error{
+    font-size: 1.8em;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 180px;
+
+}
 
 footer{
     text-align: center;
@@ -206,8 +224,8 @@ footer a:hover{
     padding: 20px;
    }
     .movieCover{
-         width: 40%;
-         height: 40%;
+         max-width: 110px;
+         height: 110px;
     }
    
     .mainContent, .icons{
@@ -217,6 +235,7 @@ footer a:hover{
         width: 100%;
               
     }
+    
     .description{
         
         line-height: 20px;
@@ -251,7 +270,6 @@ footer a:hover{
         font-size: 14px;
     }
 
-    .movieCover{width: 60%; height: auto;}
     
     .title{
         gap: 5px;

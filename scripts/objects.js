@@ -3,8 +3,8 @@ import {favorites, isInLocalStorage} from "./events.js";
 function Movie(title, imgPath, description, rating, id){
     this.title = title;
     this.imgPath = imgPath;
-    this.description = description;
-    this.rating = rating
+    this.description = description.trim().length > 300?description.slice(0,200) + '...':description
+    this.rating = rating.toFixed(1)
     this.id = id
     this.isBookmarked = isInLocalStorage(this.id)
 }
