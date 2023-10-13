@@ -28,18 +28,18 @@ const fetching = async (url) => {
         let response = await fetch(url)
         let responseJson = await response.json()
         let objectList = responseJson.results.map((movie)=>{
-            if(isInLocalStorage(movie.id)){
-                return favorites.find((movieInStorage) => movieInStorage.id == movie.id)
-            }else{
+            if(!isInLocalStorage(movie.id)){
                 return createNewMovie(movie)
+                
+            }else{
+                return favorites.find((movieInStorage) => movieInStorage.id == movie.id)
             }
             
-        })
-
+        }) 
         moviesOnScreen = objectList
         return objectList;
     } catch(err) {
-        console.log(err)
+        throw new Error(err)
     }
    
 };

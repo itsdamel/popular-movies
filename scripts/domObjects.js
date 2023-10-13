@@ -1,6 +1,9 @@
-import { displaySearchedMovies, displayFavoriteMovies, findMovieObjectById, handleFavorite} from "./events.js"
+import { moviesOnScreen } from "./APICall.js"
+import { displaySearchedMovies, displayFavoriteMovies, findMovieObjectById, handleFavorite, displayPopularMovies} from "./events.js"
 
 const movieCard = (movie) =>{
+    let indexTab = moviesOnScreen.indexOf(movie) + 4
+    console.log(indexTab)
     let movieCard = document.createElement('div')
     movieCard.classList.add('movieCard')
 
@@ -8,24 +11,24 @@ const movieCard = (movie) =>{
     mainContent.classList.add('mainContent')
     let movieCover = document.createElement('img')
     movieCover.classList.add('movieCover')
-    movieCover.src = 'https://image.tmdb.org/t/p/w185/' + movie.imgPath
+    movieCover.src =  (movie.imgPath !== null)?(movie.imgServe + movie.imgPath):'img/imagenotfound.jpg' //Talvez colocar isso no objeto 
     movieCover.alt = ''
-
     let title = document.createElement('div')
     title.classList.add('title')
     let h3Title = document.createElement('h3')
     h3Title.textContent = movie.title
+    h3Title.tabIndex =    indexTab  
     let icons = document.createElement('div')
     icons.classList.add('icons')
 
     let div1 = document.createElement('div')
-    div1.innerHTML = `<img src='img/Star.svg' alt='Rating'><span>${movie.rating}</span>`
-
+    div1.innerHTML = `<img tabindex=${indexTab} src='img/Star.svg' alt='Rating'><span>${movie.rating}</span>`
+    
     let div2 = document.createElement('div')
     movie.isBookmarked
     ?div2.innerHTML = `<img class="bookmark isBookmarked" id=${movie.id} src="img/Heart.svg" alt=""> <span>Bookmark</span>`
     :div2.innerHTML= `<img class="bookmark" id=${movie.id} src="img/Heart.svg" alt=""> <span>Bookmark</span>`
-    
+    div2.tabIndex = indexTab 
     
     
     let description = document.createElement('p')
@@ -51,13 +54,16 @@ const returnSearchButton = () =>  document.querySelector('#searchIcon')
     
 const returnBookmarkNode = () =>  document.querySelectorAll('.bookmark')
    
-const returnCheckBox = () => document.querySelector('#checkbox')
+const returnCheckbox = () => document.querySelector('#favs')
 
+const returnCheckboxDiv = () => document.querySelector('#checkbox')
 
 //Adding events
 let input = returnInputField()
 let searchButton = returnSearchButton()
-let checkbox = returnCheckBox()
+let checkbox = returnCheckbox()
+let checkboxDiv = returnCheckboxDiv() //ARE WE USING ITTT
+console.log(checkbox)   
 
 input.addEventListener('keydown', (e) => {
     (e.key === 'Enter')&&displaySearchedMovies(input.value)
@@ -66,8 +72,7 @@ input.addEventListener('keydown', (e) => {
 });
 
 checkbox.addEventListener('click', (e) =>{
-    e.target.checked&&displayFavoriteMovies()
-    
+    e.target.checked?displayFavoriteMovies():displayPopularMovies()
 })
 
 function enableMovieCardEvents(){
@@ -87,4 +92,4 @@ searchButton.addEventListener('click', () => displaySearchedMovies(input.value))
 
 
 
-export {movieCard, getUserInput, enableMovieCardEvents, returnBookmarkNode};
+export {movieCard, getUserInput, enableMovieCardEvents, returnBookmarkNode, returnCheckbox};

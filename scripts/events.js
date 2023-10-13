@@ -1,4 +1,4 @@
-import { movieCard } from "./domObjects.js";
+import { movieCard, returnCheckbox } from "./domObjects.js";
 import {getPopularMovies, searchMovieByName, moviesOnScreen } from "./APICall.js";
 import { enableMovieCardEvents } from "./domObjects.js";
 
@@ -32,14 +32,14 @@ const addToLocalStorage = (array) =>{
 
 const removeFromFavorites = (movie) =>{
     let index = favorites.indexOf(movie)
-    console.log(index)
     favorites.splice(index, 1)
 }
+
 const displayPopularMovies = async () => {
     
     let popularMoviesList = await getPopularMovies()
     renderMovieList(popularMoviesList)
-    
+
 }
 
 const handleFavorite = (e, movie) =>{
@@ -67,6 +67,7 @@ const displayFavoriteMovies = () =>{
     if(favorites.length !== 0){
         renderMovieList(moviesInLocalStorage())
         moviesOnScreen = moviesInLocalStorage()
+        returnCheckbox().checked = true;
     }else{
         cleanMovieSection()
         let movieSection = returnMovieSection()
@@ -76,15 +77,14 @@ const displayFavoriteMovies = () =>{
 }
 
 async function displaySearchedMovies(inputValue){
-    console.log(inputValue)
-    console.log(inputValue.length)
+    
    if(inputValue.trim() !== ''){
         let searchResultList = await searchMovieByName(inputValue)
         renderMovieList(searchResultList)
    }else{
         cleanMovieSection()
         let movieSection = returnMovieSection()
-        movieSection.append(erroMessage("Can't do! please enter a movie title :)"))
+        movieSection.append(erroMessage("Can't do! Please enter a valid movie title :)"))
    }
    
 

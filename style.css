@@ -37,11 +37,9 @@ header h1{
 
 .search-bar{
     display: flex;
-   
 }
 
 .search-bar input{
-    
     padding: 26px 24px;
     width: 632px;
     height: 74px;
@@ -52,13 +50,17 @@ header h1{
     outline: 0;
 }
 
-.search-bar img{
+.search-bar button{
+    border: none;
     background-color: #454558;
-    padding-right: 30px; 
+    padding: 0px 30px; 
     cursor: pointer;
     border-radius: 0px 8px 8px 0px;
 }
 
+.search-bar button:hover{
+    background-color: #656580;
+}
 #checkbox-label{
     display: flex;
     justify-content: space-around;

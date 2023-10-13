@@ -11,15 +11,15 @@
     </head>
     <body>
         <header> 
-            <h1>Popular Movies</h1>
+            <h1 tabindex="1">Popular Movies</h1>
             <div class="search-bar">
-                <input class="userInput" type="text" placeholder="Write the movie you are looking for here...">
-                <img  src="img/search-icon.svg" alt="search movie" id="searchIcon">
+                <input tabindex="2" class="userInput" type="text" placeholder="Write the movie you are looking for here...">
+                <button tabindex="2" id="searchIcon"><img  src="img/search-icon.svg" alt="search movie" ></button>
             </div>
 
             <div id="checkbox">
-                <label id="checkbox-label" for="favs">
-                    <input type="checkbox" id="favs" name="favs">Only show my favorite movies
+                <label tabindex="3" id="checkbox-label" for="favs">
+                    <input tabindex="3" type="checkbox" id="favs" name="favs">Only show my favorite movies
                 </label>
             </div>
         </header>
