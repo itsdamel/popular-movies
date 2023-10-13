@@ -1,7 +1,8 @@
-import { createNewMovie } from "./objects.js";
-import { favorites, isInLocalStorage} from "./events.js";
-const apiKey = '60333fe76f8b9de19cc5752f48b60ee0'
+import { createNewMovie } from "../Controller/objects.js";
+import { favorites, isInLocalStorage} from "../Controller/events.js";
+import { moviesOnScreen } from "./data.js";
 
+const apiKey = '60333fe76f8b9de19cc5752f48b60ee0' //HIDE ITTT
 
 const searchMovieByName = async(inputValue) =>{
 
@@ -21,7 +22,7 @@ const getPopularMovies = async () =>{
 
 };
 
-let moviesOnScreen = []
+
 
 const fetching = async (url) => {
     try {
@@ -39,7 +40,7 @@ const fetching = async (url) => {
         moviesOnScreen = objectList
         return objectList;
     } catch(err) {
-        throw new Error(err)
+        console.log(err)
     }
    
 };

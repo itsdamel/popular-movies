@@ -1,4 +1,4 @@
-import {isInLocalStorage} from "./events.js";
+import { isInLocalStorage } from './helpers.js'
 
 function Movie(title, imgPath, backdropImg, description, rating, id){
     this.title = title;
@@ -10,7 +10,7 @@ function Movie(title, imgPath, backdropImg, description, rating, id){
     this.isBookmarked = isInLocalStorage(this.id)
 }
 
-function createNewMovie(movie){
+function createNewMovie(movie, i){
     let movieObject = new Movie(movie.title, movie.poster_path, movie.backdrop_path,  movie.overview, movie.vote_average, movie.id)
     return movieObject
 }

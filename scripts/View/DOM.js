@@ -1,9 +1,11 @@
-import { moviesOnScreen } from "./APICall.js"
-import { displaySearchedMovies, displayFavoriteMovies, findMovieObjectById, handleFavorite, displayPopularMovies} from "./events.js"
+import { moviesOnScreen } from "../Model/APICall.js"
+import { cleanMovieSection, displayPopularMovies } from '../Controller/helpers.js'
+
+
+window.onload = displayPopularMovies()
 
 const movieCard = (movie) =>{
     let indexTab = moviesOnScreen.indexOf(movie) + 4
-    console.log(indexTab)
     let movieCard = document.createElement('div')
     movieCard.classList.add('movieCard')
 
@@ -23,7 +25,7 @@ const movieCard = (movie) =>{
 
     let div1 = document.createElement('div')
     div1.innerHTML = `<img tabindex=${indexTab} src='img/Star.svg' alt='Rating'><span>${movie.rating}</span>`
-    
+
     let div2 = document.createElement('div')
     movie.isBookmarked
     ?div2.innerHTML = `<img class="bookmark isBookmarked" id=${movie.id} src="img/Heart.svg" alt=""> <span>Bookmark</span>`
@@ -44,52 +46,13 @@ const movieCard = (movie) =>{
     
 }
 
-
-const getUserInput = () => returnInputField.value
-
-
-const returnInputField = () => document.querySelector('.userInput') 
-    
-const returnSearchButton = () =>  document.querySelector('#searchIcon')
-    
-const returnBookmarkNode = () =>  document.querySelectorAll('.bookmark')
-   
-const returnCheckbox = () => document.querySelector('#favs')
-
-const returnCheckboxDiv = () => document.querySelector('#checkbox')
-
-//Adding events
-let input = returnInputField()
-let searchButton = returnSearchButton()
-let checkbox = returnCheckbox()
-let checkboxDiv = returnCheckboxDiv() //ARE WE USING ITTT
-console.log(checkbox)   
-
-input.addEventListener('keydown', (e) => {
-    (e.key === 'Enter')&&displaySearchedMovies(input.value)
-    
-    checkbox.checked = false;
-});
-
-checkbox.addEventListener('click', (e) =>{
-    e.target.checked?displayFavoriteMovies():displayPopularMovies()
-})
-
-function enableMovieCardEvents(){
-    returnBookmarkNode().forEach((bookmark) => {
-
-        bookmark.addEventListener('click', (e) =>{
-            let movie = findMovieObjectById(e.target.id)
-            handleFavorite(e, movie)
-        
-            
-        })
-    })
+const erroMessage = (message) =>{
+    cleanMovieSection()
+    let movieSection = returnMovieSection()
+    const container = document.createElement('div')
+    container.classList.add('error')
+    container.innerHTML = `<h3>OOPS!</h3><p>${message}</p>`;
+    movieSection.append(container)
 }
 
-
-searchButton.addEventListener('click', () => displaySearchedMovies(input.value));
-
-
-
-export {movieCard, getUserInput, enableMovieCardEvents, returnBookmarkNode, returnCheckbox};
+export {movieCard, erroMessage};
