@@ -1,8 +1,7 @@
-import { moviesOnScreen } from "../Model/APICall.js"
-import { cleanMovieSection, displayPopularMovies } from '../Controller/helpers.js'
+import { moviesOnScreen } from "./APICall.js"
+import { cleanMovieSection, returnMovieSection} from './helpers.js'
 
 
-window.onload = displayPopularMovies()
 
 const movieCard = (movie) =>{
     let indexTab = moviesOnScreen.indexOf(movie) + 4

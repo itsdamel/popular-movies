@@ -1,13 +1,12 @@
-import { movieCard, returnCheckbox } from "../View/DOM.js";
-import {getPopularMovies, searchMovieByName, moviesOnScreen } from "../Model/APICall.js";
-import { enableMovieCardEvents } from "../View/DOM.js";
-import { erroMessage } from '..View/DOM.js';
-import { favorites } from "../Model/data.js";
+import {cleanMovieSection, returnMovieSection, returnCheckbox} from './helpers.js';
+import {getPopularMovies, searchMovieByName, moviesOnScreen} from './APICall.js';
+import {enableMovieCardEvents} from './eventCaller.js';
+import { favorites, moviesInLocalStorage } from './data.js';
+import {movieCard, erroMessage} from './DOM.js';
 
 //To display data
 
 const renderMovieList =  (movieList) => {
-    
     cleanMovieSection() //Maybe cleanAndReturn movieSection?
     let movieSection = returnMovieSection()
     movieList.forEach(movie => movieSection.append((movieCard(movie))
@@ -20,7 +19,6 @@ const renderMovieList =  (movieList) => {
 const displayPopularMovies = async () => {
 
     let popularMoviesList = await getPopularMovies()
-
     renderMovieList(popularMoviesList)
 
 };
@@ -77,5 +75,5 @@ const handleFavorite = (e, movie) =>{
 
     addToLocalStorage(favorites)
 };
-export{ displayPopularMovies };
+export{ displayPopularMovies, displayFavoriteMovies, displaySearchedMovies, handleFavorite };
 

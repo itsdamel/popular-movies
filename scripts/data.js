@@ -1,4 +1,3 @@
-
 let moviesInLocalStorage = () => {
 
     if(localStorage.length !== 0 || localStorage.getItem("movies") !== null){
@@ -8,7 +7,8 @@ let moviesInLocalStorage = () => {
     }
 }
 
-let moviesOnScreen = []
+
+
 let favorites =  moviesInLocalStorage() 
 
-export {favorites, moviesInLocalStorage, moviesOnScreen}
+export {favorites, moviesInLocalStorage}

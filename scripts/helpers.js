@@ -1,4 +1,5 @@
-
+import { moviesInLocalStorage} from "./data.js";
+import { moviesOnScreen } from "./APICall.js";
 
 //Return DOM elements
 
@@ -22,17 +23,16 @@ const returnMovieSection = () => {
 
 const findMovieObjectById = (id) => {
     return moviesOnScreen.find((movie) => movie.id == id)
-}
+};
 
-const isInLocalStorage = (movieId) => {
+let isInLocalStorage = (movieId) => {
 
    return moviesInLocalStorage().some((favoritedMovie) => favoritedMovie.id == movieId)
-}
-
+};
 
 const cleanMovieSection = () => {
     let movieSection = returnMovieSection()
     movieSection.textContent = ''
-}
+};
 
 export {getUserInput, returnInputField, returnSearchButton, returnBookmarkNode, returnCheckbox, returnCheckboxDiv, returnMovieSection, findMovieObjectById, isInLocalStorage, cleanMovieSection}

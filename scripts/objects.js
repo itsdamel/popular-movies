@@ -1,3 +1,4 @@
+
 import { isInLocalStorage } from './helpers.js'
 
 function Movie(title, imgPath, backdropImg, description, rating, id){
