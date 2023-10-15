@@ -1,5 +1,5 @@
 <div style="text-align: center">
-    <h1>FELÍCULAS POPULARES</h1>
+    <h1>PELÍCULAS POPULARES</h1>
     <div ><a href='./README.md'style='cursor: pointer'>EN - README</a> || <a href='./README.pt-br.md' style='cursor: pointer'>PT - README</a></div>
 </div>
 
