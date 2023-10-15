@@ -5,7 +5,7 @@
 
 <div style="text-align: center">
     <h2>PREVIEW</h2>
-    <img src='assets/preview.png' alt='deployed preview'></img>
+    <img src='img/preview.png' alt='deployed preview'></img>
     <a style='text-decoration: none; text-transform: uppercase' href='https://itsdamel.github.io/popular-movies/' target='_blank'>VER LIVE🚀</a>
 </div>
 
