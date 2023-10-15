@@ -1,45 +1,64 @@
-import {cleanMovieSection, returnMovieSection, returnCheckbox} from './helpers.js';
-import {getPopularMovies, searchMovieByName, moviesOnScreen} from './APICall.js';
-import {enableMovieCardEvents} from './eventCaller.js';
-import { favorites, moviesInLocalStorage } from './data.js';
-import {movieCard, erroMessage} from './DOM.js';
+import { cleanMovieSection, returnMovieSection, returnCheckbox, returnBookmarkNode, findMovieObjectById } from './helpers.js';
+
+import { getPopularMovies, searchMovieByName } from './APICall.js';
+import { favorites } from './data.js';
+
+import { movieCard, erroMessage } from './DOM.js';
 
 //To display data
+let moviesOnScreen = []
 
 const renderMovieList =  (movieList) => {
-    cleanMovieSection() //Maybe cleanAndReturn movieSection?
-    let movieSection = returnMovieSection()
-    movieList.forEach(movie => movieSection.append((movieCard(movie))
-    ))
-    
-    enableMovieCardEvents()
+    cleanMovieSection() 
 
+    let movieSection = returnMovieSection()
+
+    movieList.forEach((movie) => movieSection.append((movieCard(movie, movieList))
+    ));
+   
+    enableMovieCardEvents()
 };
 
 const displayPopularMovies = async () => {
 
     let popularMoviesList = await getPopularMovies()
+
     renderMovieList(popularMoviesList)
+
+    moviesOnScreen = popularMoviesList
 
 };
 
-const displayFavoriteMovies = () =>{
+function displayFavoriteMovies(){
+
     if(favorites.length !== 0){
-        renderMovieList(moviesInLocalStorage())
-        moviesOnScreen = moviesInLocalStorage()
+
+        renderMovieList(favorites)
+        
+        moviesOnScreen = favorites
+        
         returnCheckbox().checked = true;
+
     }else{
         
         erroMessage("Seems like you haven't bookmarked any movie yet!")
+
     }
     
 };
 
 async function displaySearchedMovies(inputValue){
-    
-    if(inputValue.trim() !== ''){
+
+    returnCheckbox().checked = false
+
+    if (inputValue.trim() !== '') {
+
          let searchResultList = await searchMovieByName(inputValue)
+
          searchResultList.length === 0 ? erroMessage('Invalid search!') : renderMovieList(searchResultList)
+
+         moviesOnScreen = searchResultList
+
     }else{
          
          erroMessage("Can't do! Please enter a valid movie title :)")
@@ -49,31 +68,48 @@ async function displaySearchedMovies(inputValue){
  
 //To manipulate
 
-const addToLocalStorage = (array) =>{
+const enableMovieCardEvents = () => {
+
+    returnBookmarkNode().forEach((bookmark) => {
+
+        bookmark.addEventListener('click', (e) => {
+            
+            let movie = findMovieObjectById(e.target.id)
+
+            handleFavorite(e, movie)
+            
+        });
+    });
+};
+
+const addToLocalStorage = (array) => {
+
     let readyArray = JSON.stringify(array)
+
     localStorage.setItem("movies", readyArray)
+
 };
 
-const removeFromFavorites = (movie) =>{
+const removeFromFavorites = (movie) => {
+    
     let index = favorites.indexOf(movie)
+
     favorites.splice(index, 1)
+
+    returnCheckbox().checked&&displayFavoriteMovies()
+
 };
 
-const handleFavorite = (e, movie) =>{
+const handleFavorite = (e, movie) => {
+
     e.target.classList.toggle('isBookmarked')
+
     movie.isBookmarked = !movie.isBookmarked
-
-    if (movie.isBookmarked){
-        favorites.push(movie)
-
-    }else{
-       
-        removeFromFavorites(movie)
+    
+    movie.isBookmarked ? favorites.push(movie) : removeFromFavorites(movie)
         
-        
-    }
-
     addToLocalStorage(favorites)
 };
-export{ displayPopularMovies, displayFavoriteMovies, displaySearchedMovies, handleFavorite };
+
+export{ displayPopularMovies, displayFavoriteMovies, displaySearchedMovies, handleFavorite, moviesOnScreen };
 

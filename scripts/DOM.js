@@ -1,19 +1,19 @@
-import { moviesOnScreen } from "./APICall.js"
-import { cleanMovieSection, returnMovieSection} from './helpers.js'
+import { cleanMovieSection, returnMovieSection } from './helpers.js'
 
+const movieCard = (movie, movieList) =>{
 
-
-const movieCard = (movie) =>{
-    let indexTab = moviesOnScreen.indexOf(movie) + 4
+    let indexTab = movieList.indexOf(movie) + 4
     let movieCard = document.createElement('div')
     movieCard.classList.add('movieCard')
 
     let mainContent = document.createElement('div')
     mainContent.classList.add('mainContent')
+
     let movieCover = document.createElement('img')
     movieCover.classList.add('movieCover')
     movieCover.src =  (movie.imgPath !== null)?(movie.imgServe + movie.imgPath):'img/imagenotfound.jpg' //Talvez colocar isso no objeto 
     movieCover.alt = ''
+
     let title = document.createElement('div')
     title.classList.add('title')
     let h3Title = document.createElement('h3')
@@ -45,13 +45,19 @@ const movieCard = (movie) =>{
     
 }
 
-const erroMessage = (message) =>{
+const erroMessage = (message) => {
+
     cleanMovieSection()
+
     let movieSection = returnMovieSection()
+
     const container = document.createElement('div')
+
     container.classList.add('error')
+
     container.innerHTML = `<h3>OOPS!</h3><p>${message}</p>`;
+
     movieSection.append(container)
 }
 
-export {movieCard, erroMessage};
+export { movieCard, erroMessage };

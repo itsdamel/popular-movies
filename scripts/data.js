@@ -1,14 +1,14 @@
-let moviesInLocalStorage = () => {
+const moviesInLocalStorage = () => {
 
     if(localStorage.length !== 0 || localStorage.getItem("movies") !== null){
+
         return JSON.parse(localStorage.getItem("movies"))
-    }else{
+
+    } else {
         return []
     }
-}
-
-
+};
 
 let favorites =  moviesInLocalStorage() 
 
-export {favorites, moviesInLocalStorage}
+export { favorites, moviesInLocalStorage }

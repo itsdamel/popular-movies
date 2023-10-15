@@ -1,43 +1,41 @@
-import { displaySearchedMovies, displayFavoriteMovies, handleFavorite, displayPopularMovies} from "./events.js"
-import { returnInputField, returnSearchButton, returnCheckbox, returnBookmarkNode, findMovieObjectById } from "./helpers.js"
+import { displaySearchedMovies, displayFavoriteMovies, displayPopularMovies } from "./events.js";
+import { returnInputField, returnSearchButton, returnCheckbox } from "./helpers.js";
+
 
 let input = returnInputField()
 let searchButton = returnSearchButton()
 let checkbox = returnCheckbox()
 
-//Page title events
-document.querySelector('#pageH1').addEventListener('click',()=>{
-    displayPopularMovies()
-}) 
+const enableEvents = () =>{
 
-input.addEventListener('keydown', (e) => {
-    (e.key === 'Enter')&&displaySearchedMovies(input.value)
+    //Return to popular movies event
+
+    document.querySelector('#pageH1').addEventListener('click',()=>{
+        displayPopularMovies()
+        checkbox.checked = false
+    }) 
+
+    //Search events
     
-    checkbox.checked = false
-});
-
-searchButton.addEventListener('click', () => displaySearchedMovies(input.value));
-
-//checkbox events
-checkbox.addEventListener('click', (e) =>{ //format arrow
-    e.target.checked?displayFavoriteMovies():displayPopularMovies()
-});
-
-//Card events
-const enableMovieCardEvents = () => {
-
-    returnBookmarkNode().forEach((bookmark) => {
-
-        bookmark.addEventListener('click', (e) =>{
-            let movie = findMovieObjectById(e.target.id)
-            handleFavorite(e, movie)
+    input.addEventListener('keydown', (e) => {
+        (e.key === 'Enter')&&displaySearchedMovies(input.value)
         
-            
-        });
+        
     });
-};
+    
+    searchButton.addEventListener('click', () => displaySearchedMovies(input.value));
+    
+    //checkbox events
 
+    checkbox.addEventListener('click', () =>{ //format arrow
+        
+        checkbox.checked?displayFavoriteMovies():displayPopularMovies()
+        
+    });
+    
+
+} 
 
  
 
-export {enableMovieCardEvents}
+export { enableEvents }

@@ -1,19 +1,19 @@
-import { moviesInLocalStorage} from "./data.js";
-import { moviesOnScreen } from "./APICall.js";
+import { moviesInLocalStorage } from "./data.js";
+import { moviesOnScreen } from "./events.js";
 
 //Return DOM elements
 
-const getUserInput = () => returnInputField.value
+const getUserInput = () => returnInputField.value;
 
-const returnInputField = () => document.querySelector('.userInput') 
+const returnInputField = () => document.querySelector('.userInput');
     
-const returnSearchButton = () =>  document.querySelector('#searchIcon')
+const returnSearchButton = () =>  document.querySelector('#searchIcon');
     
-const returnBookmarkNode = () =>  document.querySelectorAll('.bookmark')
+const returnBookmarkNode = () =>  document.querySelectorAll('.bookmark');
    
-const returnCheckbox = () => document.querySelector('#favs')
+let returnCheckbox = () => document.querySelector('#favs');
 
-const returnCheckboxDiv = () => document.querySelector('#checkbox')
+const returnCheckboxDiv = () => document.querySelector('#checkbox');
 
 const returnMovieSection = () => {
     return document.querySelector('.moviesContainer')
@@ -21,18 +21,17 @@ const returnMovieSection = () => {
 
 //Helper functions
 
-const findMovieObjectById = (id) => {
-    return moviesOnScreen.find((movie) => movie.id == id)
-};
+const findMovieObjectById = ( id ) =>  moviesOnScreen.find(( movie ) => movie.id == id);
 
-let isInLocalStorage = (movieId) => {
 
-   return moviesInLocalStorage().some((favoritedMovie) => favoritedMovie.id == movieId)
-};
+let isInLocalStorage = ( movieId ) => moviesInLocalStorage().some(( favoritedMovie ) => favoritedMovie.id == movieId);
+
 
 const cleanMovieSection = () => {
+
     let movieSection = returnMovieSection()
+
     movieSection.textContent = ''
 };
 
-export {getUserInput, returnInputField, returnSearchButton, returnBookmarkNode, returnCheckbox, returnCheckboxDiv, returnMovieSection, findMovieObjectById, isInLocalStorage, cleanMovieSection}
+export { getUserInput, returnInputField, returnSearchButton, returnBookmarkNode, returnCheckbox, returnCheckboxDiv, returnMovieSection, findMovieObjectById, isInLocalStorage, cleanMovieSection }
