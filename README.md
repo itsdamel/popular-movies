@@ -1,12 +1,12 @@
 <div style="text-align: center">
     <h1>Popular Movies single page</h1>
-    <div ><a style='cursor: pointer'>PT - README</a> || <a style='cursor: pointer'>ES - README</a></div>
+    <div ><a href='./README.pt-br.md' style='cursor: pointer'>PT - README</a> || <a href='./README.es.md'style='cursor: pointer'>ES - README</a></div>
 </div>
 
 <div style="text-align: center">
     <h2>PREVIEW</h2>
-    <img src='img/preview.png' alt='deployed preview'></img>
-    <a style='text-decoration: none; text-transform: uppercase' href='https://itsdamel.github.io/popular-movies/'>See live 🚀</a>
+    <img src='img/preview.png' alt='deployed preview' target='_blank'></img>
+    <a style='text-decoration: none; text-transform: uppercase' href='https://itsdamel.github.io/popular-movies/' target='_blank'>SEE LIVE 🚀</a>
 </div>
 
 <div style="text-align: center">
