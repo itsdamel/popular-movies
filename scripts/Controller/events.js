@@ -1,9 +1,9 @@
 import { cleanMovieSection, returnMovieSection, returnCheckbox, returnBookmarkNode, findMovieObjectById } from './helpers.js';
 
-import { getPopularMovies, searchMovieByName } from './APICall.js';
-import { favorites } from './data.js';
+import { getPopularMovies, searchMovieByName } from '../Model/APICall.js';
+import { favorites } from '../Model/data.js';
 
-import { movieCard, erroMessage } from './DOM.js';
+import { movieCard, erroMessage } from '../View/DOM.js';
 
 //To display data
 let moviesOnScreen = []

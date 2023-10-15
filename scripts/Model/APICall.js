@@ -1,5 +1,5 @@
-import { createNewMovie } from "./objects.js";
-import { isInLocalStorage } from "./helpers.js";
+import { createNewMovie } from "../Controller/objects.js";
+import { isInLocalStorage } from "../Controller/helpers.js";
 import { favorites} from "./data.js";
 
 

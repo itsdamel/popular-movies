@@ -1,4 +1,4 @@
-import { moviesInLocalStorage } from "./data.js";
+import { moviesInLocalStorage } from "../Model/data.js";
 import { moviesOnScreen } from "./events.js";
 
 //Return DOM elements

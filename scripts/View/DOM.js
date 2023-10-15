@@ -1,4 +1,4 @@
-import { cleanMovieSection, returnMovieSection } from './helpers.js'
+import { cleanMovieSection, returnMovieSection } from '../Controller/helpers.js'
 
 const movieCard = (movie, movieList) =>{
 
